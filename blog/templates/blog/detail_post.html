@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %} {% block content %}
+
+<a href="/edit-post/{{detail.id}}"> Edit post </a>
+
+{% if detail.published_date%}
+<time class="date"> {{ detail.published_date }} </time>
+{% endif %}
+<p>{{detail.author}}</p>
+<h1>{{detail.title}}</h1>
+<p>{{detail.text}}</p>
+{% endblock %}

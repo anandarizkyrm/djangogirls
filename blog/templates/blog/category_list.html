@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>
+         <a href="create-category">Create Category</a>
+    </h1>
+    <ul>
+    {% for category in categories %}
+        <li>
+            <a href="post-by-category/{{category.id}}">{{ category.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock  %}
+
