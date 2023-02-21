@@ -8,4 +8,22 @@
 <p>{{detail.author}}</p>
 <h1>{{detail.title}}</h1>
 <p>{{detail.text}}</p>
+
+
+
+<h3>Add Comment</h3>
+<form method="POST">
+{% csrf_token %}
+    {{form.as_p}}
+
+<button type="submit">Kirim</button>
+
+</form>
+<h1>Comments : </h1>
+{% for i in detail.comments.all %}
+    <p>{{i.text}}</p>
+{% endfor %}
+
+
+
 {% endblock %}

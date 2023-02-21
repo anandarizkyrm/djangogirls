@@ -1,11 +1,19 @@
 {% extends 'blog/base.html' %} {% block content %} 
-
 {% for post in posts%}
 
 
+<h2><a href="detail/{{post.id}}">{{ post.title }}</a></h2>
 <article>
   <time>published: {{ post.published_date }}</time>
-  <h2><a href="detail/{{post.id}}">{{ post.title }}</a></h2>
+  <p>Category :</p>
+  {% for i in post.categories.all %}
+    <p>{{ i.title }}</p>
+  {% endfor %} 
+  <ul>
+    {% for i in post.categories.all %}
+        <p>{{ i.title }}</p>
+    {% endfor %}
+</ul>
   <p>{{ post.text|linebreaksbr }}</p>
 </article>
 
