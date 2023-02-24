@@ -1,0 +1,56 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Django Blog</title>
+  </head>
+  <body>
+    <head>
+      <title>Django Girls blog</title>
+    </head>
+    <body>
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+        {% if type == 'register' %}
+        <a href="{% url 'signin' %}">Login</a>
+        
+        <h1>Register Here</h1>
+        
+        <form method="POST" >
+            {% csrf_token %}
+            <div class="row">
+                {{form.as_p}}
+            </div>
+            <button type="submit">
+                Register
+            </button>          
+        {% else %}
+        <a href="{% url 'signin' %}?type=register">Register</a>
+        <h1>Login Here</h1>
+        
+        <form method="POST" >
+            {% csrf_token %}
+            <div class="row">
+                {{form.as_p}}
+            </div>
+            <button type="submit">
+                submit
+            </button>            
+         
+        
+            {% endif %}
+    </form>
+        
+    </body>
+  </body>
+  <style>
+   
+  </style>
+</html>

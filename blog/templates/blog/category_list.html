@@ -10,6 +10,10 @@
     {% for category in categories %}
         <li>
             <a href="post-by-category/{{category.id}}">{{ category.title }}</a>
+            <form method="POST" action="{% url 'delete_category' id=category.id %}">
+                {% csrf_token %}
+                <button onclick="confirm('are you sure ?')" type="submit">delete</button>
+            </form>
         </li>
     {% endfor %}
     </ul>

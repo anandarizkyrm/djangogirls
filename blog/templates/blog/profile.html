@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %} {% block content %}
+
+<h1>Profile</h1>
+
+
+<p>
+    firstname : {{user.firstname}} 
+</p>
+
+<p>
+    lastname : {{user.lastname}}
+</p>
+
+<p>
+    username :  {{user.username}}
+</p>
+
+<p>
+    email   :  {{user.email}}
+</p>
+
+
+
+Your Posts {{total_post}}
+{% for post in posts %}
+
+<p>{{ post.title }}</p>
+
+{% endfor %}
+
+{% endblock %}

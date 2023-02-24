@@ -1,20 +1,54 @@
 {% extends 'blog/base.html' %} {% block content %} 
-{% for post in posts%}
+
+<h1 class="font-bold text-3xl">
+  Welcome {% if request.user.is_authenticated %} {{request.user.username}}
+  {%else %} Anonymouse {%endif%}
+</h1>
+
+{% include 'blog/components/filter.html' %}
 
 
+{% if posts.count < 1 %}
+
+<h1>Sorry No data Found</h1
+
+{% endif %}
+
+{% for post in posts %}
+
+<div>
 <h2><a href="detail/{{post.id}}">{{ post.title }}</a></h2>
 <article>
+  <span>Author : {{ post.author.username }}</span>
   <time>published: {{ post.published_date }}</time>
   <p>Category :</p>
+ 
   {% for i in post.categories.all %}
-    <p>{{ i.title }}</p>
+  <p>{{ i.title }}</p>
   {% endfor %} 
-  <ul>
-    {% for i in post.categories.all %}
-        <p>{{ i.title }}</p>
-    {% endfor %}
-</ul>
   <p>{{ post.text|linebreaksbr }}</p>
 </article>
+<form action="{% url 'delete_post' id=post.id %}" method="POST">
+ 
+  {% csrf_token %} 
+  <button id="delete-btn" type="submit" >Delete</button>
 
-{% endfor %} {% endblock %}
+</form>
+
+</div>
+
+{% endfor %}
+{% include 'blog/components/pagination.html'%}
+
+<script>
+  deleteButton = document.querySelector('#delete-btn')
+
+  deleteButton.addEventListener('click', function (e) {
+    e.preventDefault()
+    if(confirm('Are you sure you want to delete This ?')){
+      this.form.submit();
+    }
+  })
+
+</script>
+{% endblock %}

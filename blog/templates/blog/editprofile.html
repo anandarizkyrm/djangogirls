@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<h1>Edit Profile</h1>
+
+
+<form class="form" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="form__group">
+      <label for="profile_pic">{{field.label}}</label>
+      {{field}}
+    </div>
+    {% endfor %}
+
+
+    <div class="form__action">
+      <a class="btn btn--dark" href="index.html">Cancel</a>
+      <button class="btn btn--main" type="submit">Update</button>
+    </div>
+  </form>
+
+
+
+{% endblock  %}
